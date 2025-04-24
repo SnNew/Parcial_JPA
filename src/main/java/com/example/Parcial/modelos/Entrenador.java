@@ -7,23 +7,20 @@ public class Entrenador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEntrenador;
+    private Integer idEntrenador;
 
     private String nombre;
-    private String especialidad;
 
-    @ManyToOne
-    @JoinColumn(name = "id_equipo")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipo_id")
     private Equipo equipo;
 
-    public Entrenador() {
-    }
-
-    public Long getIdEntrenador() {
+    // Getters y setters
+    public Integer getIdEntrenador() {
         return idEntrenador;
     }
 
-    public void setIdEntrenador(Long idEntrenador) {
+    public void setIdEntrenador(Integer idEntrenador) {
         this.idEntrenador = idEntrenador;
     }
 
@@ -33,14 +30,6 @@ public class Entrenador {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getEspecialidad() {
-        return especialidad;
-    }
-
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
     }
 
     public Equipo getEquipo() {

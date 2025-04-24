@@ -1,33 +1,27 @@
 package com.example.Parcial.modelos;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 public class Jugador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idJugador;
+    private Integer idJugador;
 
     private String nombre;
-    private String posicion;
-    private Integer dorsal;
-    private LocalDate fechaNac;
-    private String nacionalidad;
+    private Integer goles;
 
-    @ManyToOne
-    @JoinColumn(name = "id_equipo")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipo_id")
     private Equipo equipo;
 
-    public Jugador() {
-    }
-
-    public Long getIdJugador() {
+    // Getters y setters
+    public Integer getIdJugador() {
         return idJugador;
     }
 
-    public void setIdJugador(Long idJugador) {
+    public void setIdJugador(Integer idJugador) {
         this.idJugador = idJugador;
     }
 
@@ -39,36 +33,12 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public String getPosicion() {
-        return posicion;
+    public Integer getGoles() {
+        return goles;
     }
 
-    public void setPosicion(String posicion) {
-        this.posicion = posicion;
-    }
-
-    public Integer getDorsal() {
-        return dorsal;
-    }
-
-    public void setDorsal(Integer dorsal) {
-        this.dorsal = dorsal;
-    }
-
-    public LocalDate getFechaNac() {
-        return fechaNac;
-    }
-
-    public void setFechaNac(LocalDate fechaNac) {
-        this.fechaNac = fechaNac;
-    }
-
-    public String getNacionalidad() {
-        return nacionalidad;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
+    public void setGoles(Integer goles) {
+        this.goles = goles;
     }
 
     public Equipo getEquipo() {

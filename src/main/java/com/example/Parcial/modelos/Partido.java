@@ -8,29 +8,26 @@ public class Partido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPartido;
+    private Integer idPartido;
 
     private LocalDate fecha;
-    private String estadio;
     private Integer golesLocal;
     private Integer golesVisita;
 
-    @ManyToOne
-    @JoinColumn(name = "equipo_local")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipo_local_id")
     private Equipo equipoLocal;
 
-    @ManyToOne
-    @JoinColumn(name = "equipo_visita")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipo_visita_id")
     private Equipo equipoVisita;
 
-    public Partido() {
-    }
-
-    public Long getIdPartido() {
+    // Getters y setters
+    public Integer getIdPartido() {
         return idPartido;
     }
 
-    public void setIdPartido(Long idPartido) {
+    public void setIdPartido(Integer idPartido) {
         this.idPartido = idPartido;
     }
 
@@ -40,14 +37,6 @@ public class Partido {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
-    }
-
-    public String getEstadio() {
-        return estadio;
-    }
-
-    public void setEstadio(String estadio) {
-        this.estadio = estadio;
     }
 
     public Integer getGolesLocal() {
